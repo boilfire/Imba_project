@@ -1,0 +1,157 @@
+<html>
+<navbar></navbar>
+
+<body class="index-page sidebar-collapse">
+  <div class="wrapper">
+      <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/header.jpg');">
+          </div>
+          <div class="container">
+              <div class="content-center brand">
+                  <img class="n-logo" src= alt="">
+                  <h1 class="h1-seo">Imba_project</h1>
+                  <h3>State your Services!</h3>
+
+                  <a routerLink = "/Provide"><button class="btn btn-primary">Provide</button></a>
+
+
+
+                  <a routerLink = "/Recieve"><button class="btn btn-neutral" data-toggle="modal" data-target="#myModal">Recieve</button></a>
+              </div>
+              <router-outlet></router-outlet>
+          </div>
+
+
+              <!-- Modal Core -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+              <div class="card card-signup modal-body" data-background-color="orange">
+                  <form class="form" method="" action="">
+                      <div class="header text-center">
+                          <h4 class="title title-up">Sign Up</h4>
+                          <div class="social-line">
+                              <a href="#pablo" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                  <i class="fa fa-facebook-square"></i>
+                              </a>
+                              <a href="#pablo" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                  <i class="fa fa-twitter"></i>
+                              </a>
+                              <a href="#pablo" class="btn btn-neutral btn-google btn-icon btn-round">
+                                  <i class="fa fa-google-plus"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="input-group form-group-no-border">
+                              <span class="input-group-addon">
+                                  <i class="now-ui-icons users_circle-08"></i>
+                              </span>
+                              <input type="text" class="form-control" placeholder="First Name...">
+                          </div>
+                          <div class="input-group form-group-no-border">
+                              <span class="input-group-addon">
+                                AppRoutingModule  <i class="now-ui-icons text_caps-small"></i>
+                              </span>
+                              <input type="text" placeholder="Last Name..." class="form-control" />
+                          </div>
+                          <div class="input-group form-group-no-border">
+                              <span class="input-group-addon">
+                                  <i class="now-ui-icons ui-1_email-85"></i>
+                              </span>
+                              <input type="text" class="form-control" placeholder="Email...">
+                          </div>
+                          <!-- If you want to add a checkbox to this form, uncomment this code -->
+                          <!-- <div class="checkbox">
+          <input id="checkboxSignup" type="checkbox">
+            <label for="checkboxSignup">
+            Unchecked
+            </label>
+            </div> -->
+                      </div>
+                      <div class="footer text-center">
+                          <a href="#pablo" class="btn btn-neutral btn-round btn-lg">Get Started</a>
+                      </div>
+                  </form>
+              </div>
+            </div>
+         </div>
+
+       </div>
+       <div class="col text-center">
+           <a href="examples/login-page.html" class="btn btn-simple btn-round btn-white btn-lg" target="_blank">View Login Page</a>
+       </div>
+     </div>
+</div>
+</div>
+      <footer class="footer" data-background-color="black">
+          <div class="container">
+              <nav>
+                  <ul>
+                      <li>
+                          <a href="https://www.creative-tim.com">
+                              Creative Tim
+                          </a>
+                      </li>
+                      <li>
+                          <a href="http://presentation.creative-tim.com">
+                              About Us
+                          </a>
+                      </li>
+                      <li>
+                          <a href="http://blog.creative-tim.com">
+                              Blog
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                              MIT License
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="copyright">
+                  &copy;
+                  <script>
+                      document.write(new Date().getFullYear())
+                  </script>, Designed by
+                  <a href="" target="_blank">TiKantsa</a>. Coded by
+                  <a href="" target="_blank">TiKantsa</a>.
+              </div>
+          </div>
+      </footer>
+
+</body>
+<!--   Core JS Files   -->
+<script src="./assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="./assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+<script src="./assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      // the body of this function is in assets/js/now-ui-kit.js
+      nowuiKit.initSliders();
+  });
+
+  function scrollToDownload() {
+
+      if ($('.section-download').length != 0) {
+          $("html, body").animate({
+              scrollTop: $('.section-download').offset().top
+          }, 1000);
+      }
+  }
+</script>
+
+</html>
