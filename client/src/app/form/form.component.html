@@ -1,7 +1,6 @@
 <html lang="en">
 
 
-
 <body>
 <navbar></navbar>
     <div filter-color="orange" style="margin-bottom: 20px;">
@@ -47,14 +46,14 @@
 
             <h4>Estimated Budget </h4>
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Budget
+              <button *ngFor="let x of budget" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Budget
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li> Small Project(100 - 500 EUR)</li>
-                  <li>Medium Project(500 - 1000 EUR)</li>
-                  <li>Large Project</li>
+                  <li > {{budget}} </li>
                 </ul>
               </div>
+
+          
 
 
             <hr style="background-color: black;">
