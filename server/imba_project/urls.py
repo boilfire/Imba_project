@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from authentication.views import AccountViewSet
+
+router = routers.SimpleRouter()
+router.register(r'accounts', AccountViewSet)
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(r'^api/v1/', include(router.urls)),
+    path('^.*$', IndexView.as_view(), name='index')
 ]

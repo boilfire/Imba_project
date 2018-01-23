@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication'
+    'authentication',
+    'rest_framework',
+    'rest_framework_jwt',
+
+
+
 
 ]
 
@@ -73,9 +78,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'imba_project.wsgi.application'
 
 
+
+
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+'authentication'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -106,8 +113,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#To use Account for authentication model and not User (By default)
-AUTH_USER_MODEL = 'authentication.Account'
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework.authentication.SessionAuthentication',
+
+        'rest_framework.authentication.BasicAuthentication',
+
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
+    ),
+
+}
+
 
 
 # Internationalization
@@ -128,3 +147,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'authentication.Account'
