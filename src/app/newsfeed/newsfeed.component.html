@@ -1,0 +1,88 @@
+
+
+    <navbar></navbar>
+
+
+          <div class="left">
+              <pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+              <input [(ngModel)]="groupSelected"
+                     [typeahead]="statesComplex"
+                     typeaheadOptionField="name"
+                     typeaheadGroupField="region"
+                     class="form-control"
+                     placeholder="Search for projects">
+
+
+
+                         <div (click)="$event.preventDefault()" class="tabnewsfeed">
+                           <h3>Newsfeed</h3>
+                           <hr/>
+                           <tabset>
+                             <tab heading="Static title"><accordion>
+                               <accordion-group heading="Static Header, initially expanded">
+                                 This content is straight in the template.
+                               </accordion-group>
+                               <accordion-group #group>
+                                 <div accordion-heading class="clearfix">
+                                   I can have markup, too!
+                                   <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
+                                 </div>
+                                 This is just some content to illustrate fancy headings.
+                               </accordion-group>
+                               <accordion-group heading="Group with isOpenChange event listener" (isOpenChange)="log($event)">
+                                 <p>Some content</p>
+                               </accordion-group>
+                               <accordion-group heading="Another group">
+                                 <p>Some content</p>
+                               </accordion-group>
+                             </accordion></tab>
+                             <tab *ngFor="let tabz of tabs"
+                                  [heading]="tabz.title"
+                                  [active]="tabz.active"
+                                  (select)="tabz.active = true"
+                                  (deselect)="tabz.active = false"
+                                  [disabled]="tabz.disabled"
+                                  [removable]="tabz.removable"
+                                  (removed)="removeTabHandler(tabz)"
+                                  [customClass]="tabz.customClass">
+                               {{tabz?.content}}
+                             </tab>
+                           </tabset>
+                           <button type="button" class="btn btn-primary btn-sm" (click)="addNewTab()">
+                             Add new post
+                           </button>
+                           <button type="button" class="btn btn-primary btn-sm" (click)="tabs = []"  *ngIf="tabs.length">
+                             Remove all tabs
+                           </button>
+                         </div>
+
+
+          </div>
+
+          <div class="right">
+              <accordion>
+                <accordion-group heading="Static Header, initially expanded">
+                  This content is straight in the template.
+                </accordion-group>
+                <accordion-group #group>
+                  <div accordion-heading class="clearfix">
+                    I can have markup, too!
+                    <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
+                  </div>
+                  This is just some content to illustrate fancy headings.
+                </accordion-group>
+                <accordion-group heading="Group with isOpenChange event listener" (isOpenChange)="log($event)">
+                  <p>Some content</p>
+                </accordion-group>
+                <accordion-group heading="Another group">
+                  <p>Some content</p>
+                </accordion-group>
+              </accordion>
+          </div>
+
+
+
+
+<footerbar></footerbar>
+
+<router-outlet></router-outlet>
