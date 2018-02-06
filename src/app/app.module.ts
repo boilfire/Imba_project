@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 import { AlertModule } from 'ngx-bootstrap';
 import { AccordionModule } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap';
-import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -18,9 +20,13 @@ import { FooterComponent } from './footer/footer.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignComponent } from './sign/sign.component';
+import { AlertComponent } from './alert/alert.component';
 
+import { AuthGuard } from './guards/auth.guard';
 
+import { AlertService, AuthenticationService, UserService } from './services/index';
 
+import { AppConfig } from './app.config';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,7 @@ import { SignComponent } from './sign/sign.component';
     NewsfeedComponent,
     ProfileComponent,
     SignComponent,
+    AlertComponent,
 
 
 
@@ -42,6 +49,7 @@ import { SignComponent } from './sign/sign.component';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     AlertModule.forRoot(),
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
@@ -52,11 +60,8 @@ import { SignComponent } from './sign/sign.component';
        AlertService,
        AuthenticationService,
        UserService,
-       {
-           provide: HTTP_INTERCEPTORS,
-           useClass: JwtInterceptor,
-           multi: true
-       },
+       AppConfig
+],
 
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { AlertService, AuthenticationService } from '../services/index';
 
 interface Credentials {
   email: string,

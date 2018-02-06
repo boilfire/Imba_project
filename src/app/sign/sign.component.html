@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="card card-signup" data-background-color="orange">
-                <form class="form" method="" action="">
+                <form class="form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                     <div class="header text-center">
                         <h4 class="title title-up">Sign Up</h4>
                         <div class="social-line">
@@ -20,25 +20,25 @@
                     </div>
                     </div>
                     <div class="card-body">
-                        <div class="input-group form-group-no-border">
+                        <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }" >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
                             <input [(ngModel)]="user.firstName" type="text" class="form-control" placeholder="First Name...">
                         </div>
-                        <div class="input-group form-group-no-border">
+                        <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
                             <input [(ngModel)]="user.lastName" type="text" class="form-control" placeholder="Last Name...">
                         </div>
-                        <div class="input-group form-group-no-border">
+                        <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons ui-1_email-85"></i>
                             </span>
                             <input [(ngModel)]="user.email" type="text" class="form-control" placeholder="Email...">
                         </div>
-                        <div class="input-group form-group-no-border">
+                        <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons text_caps-small"></i>
                             </span>

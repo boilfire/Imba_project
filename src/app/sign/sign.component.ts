@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
+
+import { AlertService, UserService } from '../services/index';
+
 @Component({
   selector: 'app-sign',
   templateUrl: './sign.component.html',
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent {
-    model: any = {};
+    user: any = {};
     loading = false;
 
     constructor(
@@ -18,7 +21,7 @@ export class SignComponent {
 
     register() {
         this.loading = true;
-        this.userService.create(this.model)
+        this.userService.create(this.user)
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
