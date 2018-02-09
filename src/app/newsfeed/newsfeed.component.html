@@ -1,0 +1,51 @@
+
+
+    <navbar></navbar>
+
+<hr>
+
+          <div class="left">
+
+              <input [(ngModel)]="groupSelected"
+                     [typeahead]="statesComplex"
+                     typeaheadOptionField="name"
+                     typeaheadGroupField="region"
+                     class="form-control"
+                     placeholder="Search for projects">
+
+              <hr>
+              <div filter-color="orange" style="margin-bottom: 20px;">
+                <div class="col-lg-6 container">
+                  <div class="content" style="margin-top: 80px;">
+                    <h3>Newsfeed</h3>
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="right">
+              <accordion>
+                <accordion-group heading="Static Header, initially expanded">
+                  This content is straight in the template.
+                </accordion-group>
+                <accordion-group #group>
+                  <div accordion-heading class="clearfix">
+                    I can have markup, too!
+                    <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
+                  </div>
+                  This is just some content to illustrate fancy headings.
+                </accordion-group>
+                <accordion-group heading="Group with isOpenChange event listener" (isOpenChange)="log($event)">
+                  <p>Some content</p>
+                </accordion-group>
+                <accordion-group heading="Another group">
+                  <p>Some content</p>
+                </accordion-group>
+              </accordion>
+          </div>
+
+
+
+
+<footerbar></footerbar>
