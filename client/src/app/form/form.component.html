@@ -3,26 +3,28 @@
     <div filter-color="orange" style="margin-bottom: 20px;">
       <div class="col-lg-6 container">
         <div class="content" style="margin-top: 80px;">
-          <form class="form form-control"  method="" action="" >
+          <form class="form form-control"  (ngSubmit)="onSubmit()" >
             <h2 class="h2-seo">State what you need done</h2>
             <h5 class="h5-seo" >Make a project and we will find the best match for you. Pay the freelancer when you are 100% satisfied.</h5>
 
 
           <h6>Project Name</h6>
           <div class="input-group form-group-no-border input-lg">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" placeholder="MyProject" [(ngModel)]="form.projectName" name="projectName" #name="ngModel" />
           </div>
 
           <br>
 
           <h6>Project Description</h6>
           <div class="input-group form-group-no-border input-lg">
-            <textarea class="form-control" placeholder="Tell us more about your project" rows="4"></textarea>
+              <input class="form-control" type="text" name="projectD" id="proD" [(ngModel)]="form.projectD" #projD="ngModel" />
+
+
           </div>
 
           <h6>Skills Required</h6>
           <div class="input-group form-group-no-border input-lg">
-            <textarea class="form-control" placeholder="Skills required" rows="2"></textarea>
+            <input class="form-control" type="text" placeholder="Skills required" name="skills" [(ngModel)]="form.skills" rows="2" >
           </div>
 
 
@@ -30,29 +32,29 @@
             <div class="radio">
               <ul class="list-unstyled">
                 <li>
-                  <input type="radio" name="radio1" id="radio1" value="option1">
+                  <input type="radio" name="radio1" id="radio1" value="option1"  >
                   <label for="radio1">Fixed Price Project</label>
                 </li>
                 <li>
-                <input type="radio" name="radio1" id="radio2" value="option2" checked="">
+                <input type="radio" name="radio1" id="radio2" value="option2" >
                 <label for="radio2">Hourly Project</label>
                 </li>
               </ul>
             </div>
 
-
             <h4>Estimated Budget </h4>
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Budget
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li > {{budget}} </li>
-                </ul>
+
+              <div class="budget">
+                      <label for="power">Choose Budget</label>
+                      <select class="form-control" id="budget"
+                              required
+                              [(ngModel)]="form.budget" name="budget"
+                              #power="ngModel">
+
+                      <option  *ngFor="let b of budget[0]" [value]="b">{{b}}</option>
+                      <option *ngFor="let b of budget[1]" [value]="b">{{b}}</option>
+                      </select>
               </div>
-
-
-
-
             <hr style="background-color: black;">
 
             <div style="margin-top: 30px;">
@@ -66,16 +68,3 @@
     </div>
 
     <footerbar></footerbar>
-
-<!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="../assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>

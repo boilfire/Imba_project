@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { AccordionModule } from 'ngx-bootstrap';
@@ -24,6 +24,7 @@ import { AlertComponent } from './alert/alert.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
+import { FormService } from './form/form.service';
 import { AlertService, AuthenticationService, UserService } from './services/index';
 
 import { AppConfig } from './app.config';
@@ -49,7 +50,7 @@ import { AppConfig } from './app.config';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     AlertModule.forRoot(),
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
@@ -60,7 +61,9 @@ import { AppConfig } from './app.config';
        AlertService,
        AuthenticationService,
        UserService,
-       AppConfig
+       AppConfig,
+       FormService,
+
 ],
 
   bootstrap: [AppComponent]
