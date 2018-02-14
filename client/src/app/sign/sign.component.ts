@@ -11,7 +11,7 @@ import { AlertService, UserService } from '../services/index';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent {
-    user: any = {};
+    user: User = {};
     loading = false;
 
     constructor(

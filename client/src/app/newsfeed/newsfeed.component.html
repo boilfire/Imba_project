@@ -58,24 +58,12 @@
           <div class="left">
             <h3>Projects</h3>
             <hr>
-              <accordion>
-                <accordion-group heading="Project 1">
+              <accordion *ngFor="let p of projects">
+                <accordion-group heading={{projects.projectName}}>
                   <h3>dsadsa</h3>
-                  This content is straight in the template.
+                  {{projectD}}
                 </accordion-group>
-                <accordion-group #group>
-                  <div accordion-heading class="clearfix">
-                    I can have markup, too!
-                    <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
-                  </div>
-                  This is just some content to illustrate fancy headings.
-                </accordion-group>
-                <accordion-group heading="Group with isOpenChange event listener" (isOpenChange)="log($event)">
-                  <p>Some content</p>
-                </accordion-group>
-                <accordion-group heading="Another group">
-                  <p>Some content</p>
-                </accordion-group>
+
               </accordion>
           </div>
 

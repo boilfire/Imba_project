@@ -1,7 +1,7 @@
 export class Form {
   constructor (
   projectName: string,
-  ProjectD: string,
+  projectD: string,
   skills: string,
   budget: string,
 ) {}
