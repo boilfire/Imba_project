@@ -24,6 +24,8 @@ import { AlertComponent } from './alert/alert.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
+import { ErrorHandlingService } from './services/errorhandling.service';
+
 import { FormService } from './form/form.service';
 import { AlertService, AuthenticationService, UserService } from './services/index';
 

@@ -1,28 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import { map, catchError } from 'rxjs/operators';
+import { ErrorHandlingService } from './services/errorhandling.service';
 
-import { AppConfig } from '../app.config';
+class Credentials {
+
+  constructor(public username: string, public password: string) {
+
+  }
+}
+
+const httpOptions = {
+
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+
+};
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: HttpClient, private config: AppConfig) { }
 
-    login(username, password) {
-        return this.http.post('/api/login/', { "username": username, "password": password })
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-            });
+    isLoggedIn: boolean = false;
+    constructor(
+      private http: HttpClient,
+      private eh: ErrorHandlingService) { }
+
+    login(username, password) : Observable<boolean> {
+      const authUrl = `api-token-auth/`;
+      var credentials = new Credentials(username, password);
+
+      return this.http.post(authUrl, credentials, httpOptions).pipe(
+
+        map(results => {
+
+          if (results['token']) {
+
+            localStorage.setItem('imba-jwt-token', results['token']);
+
+            this.isLoggedIn = true;
+
+            return true;
+
+          } else {
+
+            return false;
+
+          }
+
+        }),
+
+        catchError(this.eh.handleError<boolean>(`login username=${username}`,
+
+    false))
+
+);
     }
 
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+    logout(): void {
+
+      this.isLoggedIn = false;
+
+      localStorage.removeItem('bangular-jwt-token');
     }
 }
