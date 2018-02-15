@@ -9,16 +9,16 @@
                   <alerts></alerts>
                     <form name="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
                         <div class="content">
-                          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-                            <div class="input-group form-group-no-border input-lg" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                          <div  class="help-block">Username is required</div>
+                            <div class="input-group form-group-no-border input-lg" >
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons ui-1_email-85"></i>
                                 </span>
                                 <input type="text" name="username" class="form-control" id= "register_username" placeholder="Username" formControlName="username" required />
 
                           </div>
-                          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-                            <div class="input-group form-group-no-border input-lg" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                          <div  class="help-block">Password is required</div>
+                            <div class="input-group form-group-no-border input-lg" >
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons text_caps-small"></i>
                                 </span>

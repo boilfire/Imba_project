@@ -25,7 +25,7 @@ SECRET_KEY = '=6xlj-_dyitla806*kq6m=s%v3b(re%dm^6u=v-&r$91kr$!t!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication'
+    'authentication',
+    'rest_framework',
+    'corsheaders',
 
 ]
 
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'imba_project.urls'
@@ -87,6 +90,19 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework.authentication.SessionAuthentication',
+
+        'rest_framework.authentication.BasicAuthentication',
+
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
+    ),
+
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -107,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #To use Account for authentication model and not User (By default)
-AUTH_USER_MODEL = 'authentication.Account'
+
 
 
 # Internationalization
@@ -128,3 +144,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+from pathlib import Path
+STATICFILES_DIRS = (
+    os.path.join(str(Path(BASE_DIR).parents[0]), os.path.join('client', 'dist')),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'dist')

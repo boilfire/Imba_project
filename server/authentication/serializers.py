@@ -1,34 +1,41 @@
 from django.contrib.auth import update_session_auth_hash
 from rest_framework import serializers
-from authentication.models import Account
+from authentication.models import User_Prof
+from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
 
-class AccountSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=False)
-    confirm_password = serializers.CharField(write_only=True, required=False)
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+
+class User_Prof_Serializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Account
-        fields = ('id', 'email', 'username', 'created_at', 'updated_at',
-                  'first_name', 'last_name', 'tagline', 'password',
-                  'confirm_password',)
+        model = User_Prof
         read_only_fields = ('created_at', 'updated_at',)
+        exclude = ('user',)
 
-        def create(self, validated_data):
-            return Account.objects.create(**validated_data)
+class User_Serializer(serializers.ModelSerializer):
+    prof = User_Prof_Serializer(required=False)
+    password = serializers.CharField(write_only=True, required=True)
+    first_name = serializers.CharField(required=True, allow_blank=False)
+    last_name = serializers.CharField(required=True, allow_blank=False)
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
 
-        def update(self, instance, validated_data):
-            instance.username = validated_data.get('username', instance.username)
-            instance.tagline = validated_data.get('tagline', instance.tagline)
 
-            instance.save()
+    class Meta:
+        model = User
+        fields = (
+             'id', 'first_name','last_name','email','username', 'password', 'prof'
+        )
 
-            password = validated_data.get('password', None)
-            confirm_password = validated_data.get('confirm_password', None)
+    def create(self, validated_data):
 
-            if password and confirm_password and password == confirm_password:
-                instance.set_password(password)
-                instance.save()
+        user = User.objects.create_user(
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            email =validated_data['email'],
+            username = validated_data['username'],
+            password=validated_data['password']
+        )
 
-            update_session_auth_hash(self.context.get('request'), instance)
-
-            return instance
+        return user

@@ -26,7 +26,7 @@ export class UserService {
     }
 
     create(firstName, lastName, email, username, password ) {
-        return this.http.post(this.config.apiUrl + '/register/', {"firstName": firstName, "lastName": lastName,
+        return this.http.post('/api/register/', {"first_name": firstName, "last_name": lastName,
                                                                   "email": email, "username": username,
                                                                   "password": password} , httpOptions);
     }

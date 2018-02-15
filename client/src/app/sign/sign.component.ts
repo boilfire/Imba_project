@@ -23,11 +23,11 @@ export class SignComponent {
 
     createForm() {
     this.signupForm = this.fb.group({
-      'firstName': ['', Validators.required],
-      'lastName': ['', Validators.required],
-      'email': ['', Validators.required],
-      'username': ['', Validators.required],
-      'password': ['', Validators.required],
+      'firstName': [''],
+      'lastName': [''],
+      'email': [''],
+      'username': [''],
+      'password': [''],
     });
   }
 
@@ -36,14 +36,14 @@ export class SignComponent {
     register() {
         this.loading = true;
         this.userService.create( this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.username,
-                            this.signupForm.value.password,)
+                            this.signupForm.value.password)
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    console.log(error);
                     this.loading = false;
                 });
     }

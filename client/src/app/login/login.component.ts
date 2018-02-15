@@ -29,8 +29,8 @@ export class LoginComponent {
 
         createForm() {
         this.loginForm = this.fb.group({
-          'email': ['', Validators.required],
-          'password': ['', Validators.required]
+          'username': [''],
+          'password': ['']
         });
       }
       ngOnInit() {
@@ -49,7 +49,7 @@ export class LoginComponent {
                       this.router.navigate([this.returnUrl]);
                   },
                   error => {
-                      this.alertService.error(error);
+                      console.log(error);
                       this.loading = false;
                   });
       }
