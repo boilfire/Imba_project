@@ -11,11 +11,11 @@ interface Credentials {
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
-  signinForm: FormGroup;
+  loginForm: FormGroup;
       loading = false;
       returnUrl: string;
 
@@ -23,7 +23,9 @@ export class LoginComponent {
           private route: ActivatedRoute,
           private router: Router,
           private authenticationService: AuthenticationService,
-          private alertService: AlertService) { this.createForm();}
+          private alertService: AlertService,
+          private fb: FormBuilder,
+        ) { this.createForm();}
 
         createForm() {
         this.loginForm = this.fb.group({
