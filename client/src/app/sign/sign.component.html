@@ -5,7 +5,7 @@
         <div class="row">
             <div class="card card-signup" data-background-color="orange">
               <alerts></alerts>
-                <form class="form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+                <form class="form" [formGroup]="signupForm" (ngSubmit)="register()" #f="ngForm" novalidate>
                     <div class="header text-center">
                         <h4 class="title title-up">Sign Up</h4>
 
@@ -16,35 +16,35 @@
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
-                            <input [(ngModel)]="user.firstName" type="text" name="firstName" class="form-control" placeholder="First Name..." #firstName="ngModel" required />
+                            <input formControlName="firstName" type="text" name="firstName" class="form-control" placeholder="First Name..." #firstName="ngModel" required />
                         </div>
                         <!-- lastName -->
                         <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
-                            <input [(ngModel)]="user.lastName" type="text" name="lastName" class="form-control" placeholder="Last Name..." #lastName="ngModel" required />
+                            <input formControlName="lastName" type="text" name="lastName" class="form-control" placeholder="Last Name..." #lastName="ngModel" required />
                         </div>
                         <!-- email -->
                         <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons ui-1_email-85"></i>
                             </span>
-                            <input [(ngModel)]="user.email" type="text" name="username" class="form-control" placeholder="Email..." #email="ngModel" required />
+                            <input formControlName="email" type="text" name="username" class="form-control" placeholder="Email..." #email="ngModel" required />
                         </div>
                         <!-- username -->
                         <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !username.valid }" >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
-                            <input [(ngModel)]="user.username" type="text" name="username" class="form-control" placeholder="Username..." #username="ngModel" required />
+                            <input formControlName="username" type="text" name="username" class="form-control" placeholder="Username..." #username="ngModel" required />
                         </div>
                         <!-- password -->
                         <div class="input-group form-group-no-border" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons text_caps-small"></i>
                             </span>
-                            <input [(ngModel)]="user.password" type="password" name="password" placeholder="Password..." class="form-control" #password="ngModel" required />
+                            <input formControlName="password" type="password" name="password" placeholder="Password..." class="form-control" #password="ngModel" required />
                         </div>
                         <div class="checkbox">
                           <input id="checkboxSignup" type="checkbox">

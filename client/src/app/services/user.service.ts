@@ -25,8 +25,10 @@ export class UserService {
         return this.http.get(this.config.apiUrl + '/users/' );
     }
 
-    create(user: User) {
-        return this.http.post(this.config.apiUrl + '/register/', user, httpOptions);
+    create(firstName, lastName, email, username, password ) {
+        return this.http.post(this.config.apiUrl + '/register/', {"firstName": firstName, "lastName": lastName,
+                                                                  "email": email, "username": username,
+                                                                  "password": password} , httpOptions);
     }
 
     update(user: User) {
