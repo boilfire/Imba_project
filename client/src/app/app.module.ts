@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AlertModule } from 'ngx-bootstrap';
@@ -42,13 +42,12 @@ import { AppConfig } from './app.config';
     SignComponent,
     AlertComponent,
 
-
-
-
   ],
+
   imports: [
-    FormsModule,
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     AlertModule.forRoot(),
@@ -56,6 +55,7 @@ import { AppConfig } from './app.config';
     TabsModule.forRoot(),
     TypeaheadModule.forRoot(),
   ],
+
   providers: [
        AuthGuard,
        AlertService,

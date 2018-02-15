@@ -7,14 +7,14 @@
             <div class="col-md-4 content-center">
                 <div class="card card-login card-plain">
                   <alerts></alerts>
-                    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                    <form name="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
                         <div class="content">
                           <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
                             <div class="input-group form-group-no-border input-lg" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons ui-1_email-85"></i>
                                 </span>
-                                <input type="text" name="email" class="form-control" id= "register_email" placeholder="Email" [ngModel]= "model.email" #username="ngModel" required />
+                                <input type="text" name="username" class="form-control" id= "register_username" placeholder="Username" formControlName="username" required />
 
                           </div>
                           <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
@@ -22,7 +22,7 @@
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons text_caps-small"></i>
                                 </span>
-                                <input type="password" name="password" class="form-control" id= "register_password" placeholder="Password" [ngModel]= "model.password" #password="ngModel" required />
+                                <input type="password" name="password" class="form-control" id= "register_password" placeholder="Password" formControlName="password"  required />
 
                             </div>
                         </div>

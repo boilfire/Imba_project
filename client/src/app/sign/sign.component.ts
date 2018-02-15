@@ -11,7 +11,7 @@ import { AlertService, UserService } from '../services/index';
   encapsulation: ViewEncapsulation.None
 })
 export class SignComponent {
-    user: any = {};
+    signupForm: FormGroup;
     loading = false;
 
     constructor(
@@ -19,7 +19,7 @@ export class SignComponent {
         private fb: FormBuilder,
         private userService: UserService,
         private alertService: AlertService
-        ) { this,createForm();}
+      ) { this.createForm();}
 
     createForm() {
     this.signupForm = this.fb.group({

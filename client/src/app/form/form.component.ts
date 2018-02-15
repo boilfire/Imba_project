@@ -3,7 +3,7 @@ import { Form } from '../models/form';
 import { FormService } from './form.service';
 import { AlertService } from '../services/index';
 import { Router } from '@angular/router';
-
+import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
