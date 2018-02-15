@@ -4,12 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 import { ErrorHandlingService } from './services/errorhandling.service';
 
-class Credentials {
-
-  constructor(public username: string, public password: string) {
-
-  }
-}
 
 const httpOptions = {
 
@@ -26,16 +20,14 @@ export class AuthenticationService {
       private eh: ErrorHandlingService) { }
 
     login(username, password) : Observable<boolean> {
-      const authUrl = `api-token-auth/`;
-      var credentials = new Credentials(username, password);
 
-      return this.http.post(authUrl, credentials, httpOptions).pipe(
+      return this.http.post('api/login', {'username': username, 'password': password }, httpOptions).pipe(
 
         map(results => {
 
           if (results['token']) {
 
-            localStorage.setItem('imba-jwt-token', results['token']);
+            localStorage.setItem('imba-token', results['token']);
 
             this.isLoggedIn = true;
 
@@ -47,19 +39,15 @@ export class AuthenticationService {
 
           }
 
-        }),
-
-        catchError(this.eh.handleError<boolean>(`login username=${username}`,
-
-    false))
-
-);
+        })
+      );
     }
+
 
     logout(): void {
 
       this.isLoggedIn = false;
 
-      localStorage.removeItem('bangular-jwt-token');
+      localStorage.removeItem('imba-token');
     }
 }
