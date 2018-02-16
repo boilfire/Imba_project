@@ -17,7 +17,8 @@ interface Credentials {
 export class LoginComponent {
   loginForm: FormGroup;
       loading = false;
-      returnUrl: string;
+      wrongCredentials = false;
+      isLoggedIn = false;
 
       constructor(
           private route: ActivatedRoute,
@@ -46,12 +47,13 @@ export class LoginComponent {
           this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
               .subscribe(
                   data => {
-                      
+                      isLoggedIn = true;
                       this.router.navigate(['/newsfeed']);
                   },
                   error => {
-                      console.log(error);
-                      this.loading = false;
+                    this.signinForm.controls['email'].setErrors({'incorrect': true});
+                    this.signinForm.controls['password'].setErrors({'incorrect': true});
+                    this.wrongCredentials = true;
                   });
       }
   }

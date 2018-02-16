@@ -12,6 +12,9 @@
                     </div>
                     <div class="card-body">
                       <!-- firstName -->
+                      <span class="help-block" *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched">
+                        <span class="errors" *ngIf="signupForm.get('firstName').errors['required']">This field is required</span>
+                      </span>
                         <div class="input-group form-group-no-border"  >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
@@ -19,6 +22,9 @@
                             <input formControlName="firstName" type="text" name="firstName" class="form-control" placeholder="First Name..."  required />
                         </div>
                         <!-- lastName -->
+                        <span class="help-block" *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched">
+                          <span class="errors" *ngIf="signupForm.get('lastName').errors['required']">This field is required</span>
+                        </span>
                         <div class="input-group form-group-no-border" >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
@@ -26,6 +32,9 @@
                             <input formControlName="lastName" type="text" name="lastName" class="form-control" placeholder="Last Name..."  required />
                         </div>
                         <!-- email -->
+                        <span class="help-block" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+                          <span class="errors" *ngIf="signupForm.get('email').errors['required']">This field is required</span>
+                        </span>
                         <div class="input-group form-group-no-border" >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons ui-1_email-85"></i>
@@ -33,6 +42,9 @@
                             <input formControlName="email" type="text" name="username" class="form-control" placeholder="Email..."  required />
                         </div>
                         <!-- username -->
+                        <span class="help-block" *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
+                          <span class="errors" *ngIf="signupForm.get('username').errors['required']">This field is required</span>
+                        </span>
                         <div class="input-group form-group-no-border"  >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
@@ -40,6 +52,9 @@
                             <input formControlName="username" type="text" name="username" class="form-control" placeholder="Username..." required />
                         </div>
                         <!-- password -->
+                        <span class="help-block" *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">
+                          <span class="errors" *ngIf="signupForm.get('password').errors['required']">This field is required</span>
+                        </span>
                         <div class="input-group form-group-no-border" >
                             <span class="input-group-addon">
                                 <i class="now-ui-icons text_caps-small"></i>

@@ -53,6 +53,6 @@ export class AuthenticationService {
 
       this.isLoggedIn = false;
 
-      localStorage.removeItem('imba-token');
+      localStorage.removeItem('imba-jwt-token');
     }
 }

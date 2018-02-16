@@ -6,10 +6,14 @@
         <div class="container">
             <div class="col-md-4 content-center">
                 <div class="card card-login card-plain">
-                  <alerts></alerts>
                     <form name="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                      <div class="login errors" *ngIf="wrongCredentials">
+                        Wrong username or password
+                      </div>
                         <div class="content">
-                          <div  class="help-block">Username is required</div>
+                          <span class="help-block" *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+                              <span class="errors" *ngIf="loginForm.get('username').errors['required']">Username is required!</span>
+                            </span>
                             <div class="input-group form-group-no-border input-lg" >
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons ui-1_email-85"></i>
@@ -17,7 +21,11 @@
                                 <input type="text" name="username" class="form-control" id= "register_username" placeholder="Username" formControlName="username" required />
 
                           </div>
-                          <div  class="help-block">Password is required</div>
+                          <span
+                            class="help-block"
+                              *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+              <span class="errors" *ngIf="loginForm.get('password').errors['required']">Password is required!</span>
+              </span>
                             <div class="input-group form-group-no-border input-lg" >
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons text_caps-small"></i>

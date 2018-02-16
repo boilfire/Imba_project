@@ -53,3 +53,10 @@ div.content {
   border-radius: 5px;
 
 }
+
+section {
+margin: inherit;
+width: inherit;
+height: 100%;
+overflow: hidden;
+}
