@@ -11,20 +11,13 @@ import { AuthenticationService } from '../services/index';
 export class NavbarComponent {
 
   isLoggedIn =  this.service.isLoggedIn;
+
   constructor(
-    private service: AuthenticationService;
+    private service: AuthenticationService
   ) { }
 
 
   logout() {
-      this.service.logout(this.loginForm.value.username, this.loginForm.value.password)
-          .subscribe(
-              data => {
-                  isLoggedIn = false;
-                  this.router.navigate(['/']);
-              },
-              error => {
-                console.log(error);
-              });
-
+      this.service.logout()
+    }
 }

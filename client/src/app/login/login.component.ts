@@ -18,7 +18,6 @@ export class LoginComponent {
   loginForm: FormGroup;
       loading = false;
       wrongCredentials = false;
-      isLoggedIn = false;
 
       constructor(
           private route: ActivatedRoute,
@@ -37,9 +36,6 @@ export class LoginComponent {
       ngOnInit() {
           // reset login status
           this.authenticationService.logout();
-
-          // get return url from route parameters or default to '/'
-          this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
       }
 
       login() {
@@ -47,12 +43,11 @@ export class LoginComponent {
           this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
               .subscribe(
                   data => {
-                      isLoggedIn = true;
                       this.router.navigate(['/newsfeed']);
                   },
                   error => {
-                    this.signinForm.controls['email'].setErrors({'incorrect': true});
-                    this.signinForm.controls['password'].setErrors({'incorrect': true});
+                    this.loginForm.controls['email'].setErrors({'incorrect': true});
+                    this.loginForm.controls['password'].setErrors({'incorrect': true});
                     this.wrongCredentials = true;
                   });
       }
