@@ -9,7 +9,7 @@ import { FormService } from '../form/form.service';
 })
 export class NewsfeedComponent implements OnInit {
 
-  projects: Form = {};
+
 
   constructor(
     private formService: FormService
@@ -17,14 +17,9 @@ export class NewsfeedComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getProjects();
-  }
-
-  getProjects() {
-    this.formService.getAll()
-    .subscribe(form => this.projects = form);
 
   }
+
 
 
 }

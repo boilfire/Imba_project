@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class ErrorHandlingService {
 
-  constructor(private messageService: MessageService) { }
+  constructor() { }
 
   /**
    * Handle HTTP operation that failed.
@@ -19,7 +19,7 @@ export class ErrorHandlingService {
     return (error: any): Observable<T> => {
 
       console.error(error); // log to console instead
-      this.log(`${operation} failed: ${error.message}`);
+      
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

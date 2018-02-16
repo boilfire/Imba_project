@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
-import { ErrorHandlingService } from './services/errorhandling.service';
 
+
+class Credentials {
+  constructor(public username: string, public password: string) {
+
+  }
+}
 
 const httpOptions = {
 
@@ -13,35 +18,35 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
-
+    username: string;
     isLoggedIn: boolean = false;
     constructor(
       private http: HttpClient,
-      private eh: ErrorHandlingService) { }
+      ) { }
 
-    login(username, password) : Observable<boolean> {
+      login(username, password) : Observable<boolean> {
+   const authUrl = `/api-token-auth/`;
+   var credentials = new Credentials(username, password);
+   return this.http
+     .post(authUrl, credentials, httpOptions).pipe(
+       map(results => {
+         if (results['token']) {
+           localStorage.setItem('imba-jwt-token', results['token']);
+           localStorage.setItem('username', username)
+           this.isLoggedIn = true;
+           this.username = username;
 
-      return this.http.post('api/login', {'username': username, 'password': password }, httpOptions).pipe(
+           console.log(localStorage.getItem('username'),localStorage.getItem('username'),localStorage.getItem('imba-jwt-token'));
+           return true;
+         } else {
+           return false;
+         }
+       }),
 
-        map(results => {
 
-          if (results['token']) {
+     );
 
-            localStorage.setItem('imba-token', results['token']);
-
-            this.isLoggedIn = true;
-
-            return true;
-
-          } else {
-
-            return false;
-
-          }
-
-        })
-      );
-    }
+}
 
 
     logout(): void {

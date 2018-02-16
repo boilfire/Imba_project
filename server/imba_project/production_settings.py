@@ -25,7 +25,7 @@ SECRET_KEY = '=6xlj-_dyitla806*kq6m=s%v3b(re%dm^6u=v-&r$91kr$!t!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','[::1]', 'snf-782541.vm.okeanos.grnet.gr' ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
-    'imba_projectBack',
 
 ]
 
@@ -144,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/'
 from pathlib import Path
 STATICFILES_DIRS = (
     os.path.join(str(Path(BASE_DIR).parents[0]), os.path.join('client', 'dist')),

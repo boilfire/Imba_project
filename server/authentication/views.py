@@ -6,6 +6,7 @@ from .serializers import User_Serializer
 from django.contrib.auth.models import User
 from authentication.models import User_Prof
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 

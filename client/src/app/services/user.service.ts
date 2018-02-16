@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { AppConfig } from '../app.config';
+
 import { User } from '../models/user';
 
 
@@ -12,18 +12,12 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-    constructor(private http: HttpClient, private config: AppConfig) { }
+    constructor(private http: HttpClient) { }
 
 
 
 
-    getAll() {
-        return this.http.get(this.config.apiUrl + '/users');
-    }
 
-    getById(_id: string) {
-        return this.http.get(this.config.apiUrl + '/users/' );
-    }
 
     create(firstName, lastName, email, username, password ) {
         return this.http.post('/api/register/', {"first_name": firstName, "last_name": lastName,
@@ -31,13 +25,7 @@ export class UserService {
                                                                   "password": password} , httpOptions);
     }
 
-    update(user: User) {
-        return this.http.put(this.config.apiUrl + '/users/' , user);
-    }
-
-    delete(_id: string) {
-        return this.http.delete(this.config.apiUrl + '/users/' );
-    }
+  
 
     // private helper methods
 

@@ -1,43 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { Form } from '../models/form';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { FormService } from './form.service';
-import { AlertService } from '../services/index';
-import { Router } from '@angular/router';
-import { NgModel } from '@angular/forms';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  form: Form = {};
+  postForm: FormGroup;
   loading = false;
 
   constructor(
     private router: Router,
-    private alertService: AlertService,
-    private formService: FormService,
-  ) { }
 
+    private formService: FormService,
+    private fb: FormBuilder,
+  ) { this.createForm() }
+
+  createForm() {
+  this.postForm = this.fb.group({
+    'projectName': [''],
+    'projectD': [''],
+    'skills': [''],
+    'budget': [''],
+  });
+  }
   ngOnInit(){}
 
-    budget = [
 
-      ['Small Project (0-100 EUR)', 'Medium Project (100- 400 EUR)', 'Large Project (400 - 2500 EUR)'],
-
-      ['0-3 EUR/H', '4-8 EUR/H', '9-15 EUR/H']
-
-  ];
 
   onSubmit() {
+    console.log(this.postForm)
     this.loading = true;
-    this.formService.createForm(this.form).subscribe(
+    this.formService.createForm(this.postForm.value.projectName,this.postForm.value.projectD,
+                              this.postForm.value.skills,this.postForm.value.budget).subscribe(
       data => {
-          this.alertService.success('Project posted successfully', true);
           this.router.navigate(['/newsfeed']);
       },
       error => {
-          this.alertService.error(error);
+          console.log(error);
           this.loading = false;
       });
 

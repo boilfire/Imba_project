@@ -3,32 +3,32 @@
     <div filter-color="orange" style="margin-bottom: 20px;">
       <div class="col-lg-6 container">
         <div class="content" style="margin-top: 80px;">
-          <form class="form form-control"  (ngSubmit)="onSubmit()" >
+          <form class="form form-control"  [formGroup]="postForm" (ngSubmit)="onSubmit()" >
             <h2 class="h2-seo">State what you need done</h2>
             <h5 class="h5-seo" >Make a project and we will find the best match for you. Pay the freelancer when you are 100% satisfied.</h5>
 
 
           <h6>Project Name</h6>
           <div class="input-group form-group-no-border input-lg">
-            <input type="text" class="form-control" placeholder="MyProject" [(ngModel)]="form.projectName" name="projectName" #name="ngModel" />
+            <input type="text" class="form-control" placeholder="MyProject" formControlName="projectName" name="projectName"  />
           </div>
 
           <br>
 
           <h6>Project Description</h6>
           <div class="input-group form-group-no-border input-lg">
-              <input class="form-control" type="text" name="projectD" id="proD" [(ngModel)]="form.projectD" #projD="ngModel" />
+              <input class="form-control" type="text" name="projectD" id="proD" formControlName="projectD" />
 
 
           </div>
 
           <h6>Skills Required</h6>
           <div class="input-group form-group-no-border input-lg">
-            <input class="form-control" type="text" placeholder="Skills required" name="skills" [(ngModel)]="form.skills" rows="2" >
+            <input class="form-control" type="text" placeholder="Skills required" name="skills" formControlName="skills" rows="2" >
           </div>
 
 
-            <h4>Payment Method</h4>
+            <!--<h4>Payment Method</h4>
             <div class="radio">
               <ul class="list-unstyled">
                 <li>
@@ -40,7 +40,7 @@
                 <label for="radio2">Hourly Project</label>
                 </li>
               </ul>
-            </div>
+            </div>-->
 
             <h4>Estimated Budget </h4>
 
@@ -48,17 +48,19 @@
                       <label for="power">Choose Budget</label>
                       <select class="form-control" id="budget"
                               required
-                              [(ngModel)]="form.budget" name="budget"
-                              #power="ngModel">
+                              formControlName="budget" name="budget"
+                              >
+                              <option value='Small Project (0-100 EUR)' >Small Project (0-100 EUR)</option>
+                              <option value='Medium Project (100- 400 EUR)'>Medium Project (100- 400 EUR)</option>
+                              <option value='Large Project (400 - 2500 EUR)'>Large Project (400 - 2500 EUR)</option>
 
-                      <option  *ngFor="let b of budget[0]" [value]="b">{{b}}</option>
-                      <option *ngFor="let b of budget[1]" [value]="b">{{b}}</option>
                       </select>
               </div>
             <hr style="background-color: black;">
 
             <div style="margin-top: 30px;">
-              <button class="btn btn-primary btn-lg">Submit Project</button>
+              <button [disabled]="loading" type="submit" class="btn btn-primary btn-lg">Submit Project</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </div>
 
           </form>

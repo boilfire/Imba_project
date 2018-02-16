@@ -46,7 +46,8 @@ export class LoginComponent {
           this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
               .subscribe(
                   data => {
-                      this.router.navigate([this.returnUrl]);
+                      
+                      this.router.navigate(['/newsfeed']);
                   },
                   error => {
                       console.log(error);

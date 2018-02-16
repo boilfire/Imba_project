@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Form } from '../models/form';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+
 
 @Injectable()
 export class FormService {
@@ -9,8 +15,8 @@ export class FormService {
 
 	}
 
-	createForm(form : Form){
-		return this.http.post('/api/form', form);
+	createForm(projectName,projectD,skills,budget){
+		return this.http.post('/api/proj_create/', {"project_name":projectName, "description":projectD, "skills_required":skills, "payment_method":budget }, httpOptions);
 	}
 
 	getAll() {
